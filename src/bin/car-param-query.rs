@@ -21,12 +21,12 @@
 
 use std::collections::{BTreeMap, BTreeSet};
 use tracing::{info, warn};
-use assetto_corsa::{Car, Installation};
-use assetto_corsa::car::data::Engine;
-use assetto_corsa::car::data::engine::EngineData;
-use assetto_corsa::car::ENGINE_CRANE_CAR_TAG;
-use assetto_corsa::car::ui::CarUiData;
-use assetto_corsa::traits::extract_mandatory_section;
+use zephyrj_ac_tools::{Car, Installation};
+use zephyrj_ac_tools::car::data::Engine;
+use zephyrj_ac_tools::car::data::engine::EngineData;
+use zephyrj_ac_tools::car::ENGINE_CRANE_CAR_TAG;
+use zephyrj_ac_tools::car::ui::CarUiData;
+use zephyrj_ac_tools::traits::extract_mandatory_section;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut inertia_map: BTreeMap<String, f64> = BTreeMap::new();

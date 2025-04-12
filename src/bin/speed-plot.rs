@@ -3,9 +3,9 @@ extern crate ndarray;
 
 use plotters::prelude::*;
 use ndarray::prelude::*;
-use assetto_corsa::{Car, Installation};
+use zephyrj_ac_tools::{Car, Installation};
 
-use assetto_corsa::car::model::SpeedApproximator;
+use zephyrj_ac_tools::car::model::SpeedApproximator;
 
 fn as_usize(x: &f64) -> String {
    format!("{}", *x as usize)

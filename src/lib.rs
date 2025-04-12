@@ -24,6 +24,8 @@ pub mod traits;
 pub mod file_utils;
 pub mod ini_utils;
 pub mod car;
+mod steam;
+
 pub use car::Car;
 
 use std::collections::HashMap;
@@ -33,7 +35,6 @@ use std::io::{BufRead, BufReader};
 use std::path::{PathBuf};
 use tracing::info;
 use crate::error::{Error, ErrorKind, Result};
-use steam;
 
 pub const STEAM_GAME_NAME: &str = "assettocorsa";
 pub const STEAM_GAME_ID: i64 = 244210;

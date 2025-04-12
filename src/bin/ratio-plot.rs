@@ -24,8 +24,8 @@ use plotters::drawing::IntoDrawingArea;
 use plotters::element::PathElement;
 use plotters::prelude::{BLACK, FontDesc, FontFamily, FontStyle, LineSeries, SVGBackend, WHITE};
 use plotters::style::{Color, TextStyle, YELLOW};
-use assetto_corsa::car::model::GearingCalculator;
-use assetto_corsa::{Car, Installation};
+use zephyrj_ac_tools::car::model::GearingCalculator;
+use zephyrj_ac_tools::{Car, Installation};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let car_folder_name = "ferrari_458";
