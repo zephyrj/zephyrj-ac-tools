@@ -421,8 +421,9 @@ mod tests {
     use std::io::Write;
     use std::path::{Path};
     use crate::car::{Car, create_new_car_spec};
-    use crate::car::data::CarIniData;
+    use crate::car::data::{CarIniData, Drivetrain};
     use crate::car::ui::CarUiData;
+    use crate::ini_utils::Ini;
     use crate::Installation;
 
     #[test]
@@ -456,6 +457,28 @@ mod tests {
                                                "test",
                                                opts).unwrap();
         println!("{}", new_car_path.display());
+    }
+    
+    #[test]
+    fn generic_ini_update_test() {
+        let ac_install = Installation::new();
+        let mut car_dir = ac_install.get_installed_car_path();
+        car_dir = car_dir.join("abarth500");
+        let mut opts = 0;
+        opts |= crate::car::UNPACK_DATA_BIT;
+        let new_car_path = create_new_car_spec(&ac_install,
+                                               &car_dir,
+                                               "generic_update_test",
+                                               opts).unwrap();
+        let mod_car = Car::load_from_path(&new_car_path).unwrap();
+        let mut data_interface = mod_car.data_interface;
+        let ini_name = "electronics.ini";
+        let file_data = data_interface.get_original_file_data(ini_name).unwrap().unwrap();
+        let mut ini_data = Ini::load_from_string(String::from_utf8_lossy(file_data.as_slice()).into_owned());
+        ini_data.set_value("ABS", "ACTIVE", String::from("0"));
+        data_interface.update_file_data(ini_name,
+                                        ini_data.to_bytes());
+        data_interface.write().unwrap();
     }
 
     #[test]

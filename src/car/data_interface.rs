@@ -63,6 +63,8 @@ impl DataFolderInterface {
 }
 
 impl _DataInterfaceI for DataFolderInterface {
+    // TODO this is a weird interface now as this is different to the acd file case
+    //      this won't pick up any updates made but the acd file will return updated files
     fn get_original_file_data(&self, filename: &str) -> DataInterfaceResult<Option<Vec<u8>>> {
         let file_path = (&self.data_folder_path).join(Path::new(filename));
         let f = match File::open(file_path) {
