@@ -221,9 +221,9 @@ pub fn generate_acd_key(folder_name: &str) -> Result<String> {
     let mut key_5: KeyVal = 0x42;
     for idx in (1..folder_name.len()-4).step_by(4) {
         let mut tmp = u64::from(folder_name.chars().nth(idx).ok_or(index_error(idx))?) as KeyVal + 0xf;
-        tmp *= key_5;
+        tmp = tmp.wrapping_mul(key_5);
         let mut tmp2 = u64::from(folder_name.chars().nth(idx-1).ok_or(index_error(idx-1))?) as KeyVal + 0xf;
-        tmp2 *= tmp;
+        tmp2 = tmp2.wrapping_mul(tmp);
         tmp2 += 0x16;
         key_5 = tmp2;
     }
